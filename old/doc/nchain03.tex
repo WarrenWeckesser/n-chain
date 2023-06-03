@@ -1,0 +1,201 @@
+\documentclass[11pt]{amsart}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{fullpage}
+\newtheorem{prop}{Proposition}
+\newtheorem{corr}{Corollary}
+\newtheorem{open}{Open Question}
+\newtheorem{conj}{Conjecture}
+\newcommand{\diag}{\textrm{diag}}
+\title{Whirling Modes of the N-Chain}
+\author{Warren Weckesser}
+\address{Department of Mathematics, Colgate University}
+\date{3 July 2003}
+\begin{document}
+\maketitle
+\section{Introduction}
+The \emph{n-chain} is a chain of spherical pendulums; topologically, the configuration
+space is $(S^2)^{n}$.
+We ignore friction, and
+the only external force is gravity.
+
+Background, etc.
+Marsden and Scheurle \cite{MS} studied the double spherical pendulum, which in our terminology
+is the $2$-chain.
+
+\section{Equations of Motion and Relative Equilibria}
+
+Let $\phi_i$ be the angle of the $i$th pendulum from the straight down position.
+
+yada yada yada...
+
+
+
+Let $\Phi = [\phi_1, \phi_2, \ldots, \phi_n]$,
+$\tan\Phi = [\tan\phi_1, \tan\phi_2, \ldots, \tan\phi_n]$,
+and $\sin\Phi$ is defined similarly.
+
+\subsection{Equilibria}
+\begin{prop}
+The $n$-chain has $2^n$ equilibrium solutions
+(with $\phi_i=0$ or $\phi_i = \pi$).
+Only the equilibrium where $\phi_1 = \phi_2 = \cdots = \phi_n = 0$ is stable.
+If an equilibrium has $k$ pendulums inverted, the linearization at that
+equilibria has $k$ pairs of real eigenvalues, where the eigenvalues in each
+pair have equal magnitudes and opposite signs.
+\end{prop}
+Let us denote an equilibrium as $\Phi_K$, such that
+$\Phi_0 = (0,0,\ldots,0)$,
+$\Phi_1 = (\pi,0,0,\ldots,0)$,
+$\Phi_2 = (0,\pi,0,0,\ldots,0)$,
+$\Phi_3 = (\pi,\pi,0,0,\ldots)$,
+\ldots, and
+$\Phi_{2^n-1} = (\pi,\pi,\pi,\ldots,\pi)$.
+Thus, the binary representation of the numerical subscript
+gives the configuration.  $\Phi_0$ is the stable solution in which all the
+pendulums hang straight down.
+
+\subsection{Relative equilibria}
+
+\begin{prop}
+Consider an equilibrium that has $k$ pendulums inverted.
+Then $n-k$ families of relative equilibria bifurcate from this
+equilibrium.
+\end{prop}
+
+\begin{corr}
+The $n$-chain has $n2^{n-1}$ families of relative equilibria that
+bifurcate from straight solutions.
+\label{COR:COUNT}
+\end{corr}
+
+\begin{open}
+Are there examples of an $n$-chain with relative equilibria that are not
+in a family that bifurcates from a straight solution?
+Or does Corollary \ref{COR:COUNT} given them all?
+\end{open}
+
+We now focus on the case where all the masses are equal and all the length are equal. 
+Let $D_n = \textrm{diag}(n,n-1,\ldots,1)$, and let
+\[
+   A_n = \begin{pmatrix}
+            n &   n-1 & n-2  &\ldots & 1 \\
+            n-1 & n-1 & n-2  & \ldots & 1 \\
+            n-2 & n-2 & n-2  & \ldots & 1 \\
+            \vdots & & & \ddots &  \\
+            1 & 1 & 1 & \ldots & 1
+          \end{pmatrix}.
+\]
+%For example,
+%\[
+%   A_4 = \begin{pmatrix}
+%              4 & 3 & 2 & 1 \\
+%              3 & 3 & 2 & 1 \\
+%              2 & 2 & 2 & 1 \\
+%              1 & 1 & 1 & 1
+%         \end{pmatrix}.
+%\]
+The equation for the relative equilibria may be written as
+\begin{equation}
+    \omega^2 A_n \sin(\Phi) = D_n\tan(\Phi).
+    \label{EQN:RELEQ}
+\end{equation}
+
+
+\noindent
+\emph{Bifurcations from the Trivial Solutions.}
+The linearization of \eqref{EQN:RELEQ} at the stable equilibrium is
+\[
+   \omega^2 A_n \Phi = D_n \Phi,
+\]
+or
+\[
+   \left(\omega^2A_n - D_n\right)\Phi = 0.
+\]
+Nontrivial solutions bifurcate from the trivial solution when
+\[
+  \det\left(\omega^2A_n - D_n\right) = 0.
+\]
+
+A similar argument can be made for bifurcations from the unstable trivial solutions,
+but we must take into account that while $\tan(\pi+h)\approx h$,
+$\sin(\pi+h) \approx -h$.
+Thus $\tan(\Phi_K + \delta\Phi) \approx \delta\Phi$,
+and $\sin(\Phi_K+\delta\Phi) \approx S_K \delta\Phi$, where
+$S_K = \diag( 1-2\Phi_{K,1}, 1-2\Phi_{K,2}, \ldots, 1-2\Phi_{K,n})$.
+In other words, $S_K$ is an $n\times n$ diagonal matrix; the $j$th diagonal
+elements is $1$ if $\phi_j = 0$ or $-1$ if $\phi_j = \pi$.
+With this notation, the formula for the values of omega at which nontrivial
+solutions bifurcate from $\Phi_K$ is
+\begin{equation}
+   \det\left(\omega^2A_n S_K - D_n\right) = 0.
+\end{equation}
+
+\section{Asymptotic Whirling Modes}
+We consider the solutions to \eqref{EQN:RELEQ} in the limit $\omega\rightarrow\infty$.
+We rewrite \eqref{EQN:RELEQ} as
+\begin{equation}
+    A_n \sin(\Phi) = D_n\tan(\Phi)/\omega^2.
+    \label{EQN:RELEQ2}
+\end{equation}
+Consider what may happen to an angle $\phi_i$ as $\omega$ becomes very large.
+If $\phi_i$ approaches an angle other than $\pi/2$ or $-\pi/2$, then
+$\tan\phi_i$ approaches a finite number, so $(\tan\phi_i)/\omega^2$ approaches
+zero.  On the other hand, if $\phi_i$ approaches $\pm\pi/2$,
+then $\sin\phi_i$ approaches zero, and
+$\tan\phi_i$ becomes infinite; this means $(\tan\phi_i)/\omega^2$
+\emph{may approach a nonzero number} as $\omega$ increases.
+
+The following conjecture is based on numerical studies.
+It applies to the case of all masses and lengths equal.
+\begin{conj}
+Consider a family of relative equilibria that bifurcates from
+a straight equilibrium.  Then for each angle $\phi_i$,
+$\lim_{\omega\rightarrow\infty} \phi_i$ is either $0$, $\pm \pi/6$ or $\pm \pi/2$.
+\end{conj}
+
+\section{Linear Stability of the Asymptotic Whirling Modes}
+
+\section{Conclusion}
+
+\begin{thebibliography}{99}
+%\bibitem{ANTMAN} S.~Antman,
+%   \emph{Nonlinear Problems in Elasticity},
+%   Springer-Verlag, New York (1995).
+%\bibitem{KOLODNER} I.~I.~Kolodner,
+%   Heavy rotating string--a nonlinear eigenvalue problem,
+%   \emph{Comm.~Pure~Appl.~Math.} \textbf{8}, 395--408 (1955).
+\bibitem{LEWIS} D.~Lewis,
+   Stacked Lagrange tops,
+   \emph{J. Nonlinear Science} \textbf{8} 63--102 (1998).
+\bibitem{MARSDEN} J.~E.~Marsden, \emph{Lectures on Mechanics},
+   Cambridge Univ.~Press, Cambridge (1992).
+\bibitem{MR} J.~E.~Marsden, T.~S.~Ratiu,
+   \emph{Introduction to Mechanics and Symmetry},
+   Springer Verlag, New York (1999).
+\bibitem{MS} J.~E.~Marsden and J.~Scheurle,
+   Lagrangian reduction and the double spherical pendulum,
+   \emph{Z. angew Math.~Phys.} \textbf{44}, 17--43 (1993).
+%\bibitem{REEKEN1} M.~Reeken,
+%    The equation of motion of a chain,
+%    \emph{Math.~Z.}, \textbf{155}(3), 219--237 (1977).
+%\bibitem{REEKEN2} M.~Reeken,
+%    Classical solutions of the chain equation. (I,II),
+%    \emph{Math.~Z.}, \textbf{165}(2), 143--169;
+%                     \textbf{166}(1), 67--82
+%    (1979).
+%\bibitem{REEKEN3} M.~Reeken,
+%    The rotating string,
+%    \emph{Math.~Ann.} \textbf{268}(1), 59--84 (1984).
+%\bibitem{TOLAND} J.~F.~Toland,
+%    On the stability of rotating heavy chains,
+%    J.~Diff.~Eqns., \textbf{32}, 15--31 (1979).
+%\bibitem{STUART} C.~F.~Stuart,
+%    Spectral theory of rotating chains,
+%    \emph{Proc.~Roy.~Soc.~Edin.}, \textbf{73A},
+%    199--214 (1975).
+%\bibitem{WATSON} G.~N.~Watson,
+%   \emph{A Treatise on the Theory of Bessel Functions},
+%   Cambridge Univ. Press, Cambridge (1922).
+\end{thebibliography}
+\end{document}

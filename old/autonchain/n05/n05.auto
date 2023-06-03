@@ -1,0 +1,21 @@
+
+#
+#
+clean()
+load('n05')
+run()
+save('n05trivial')
+ld(s='n05trivial')
+solns = sl('n05trivial')
+mode = 1
+for sol in solns:
+   if sol['Type name'] == 'BP':
+      ch('IRS',sol['Label'])
+      ch('ISW',-1)
+      run()
+      namestr = 'n05m%(mode)03d' % vars()
+      save(namestr)
+      print 'Saved mode ',mode
+      mode = mode + 1
+
+clean()

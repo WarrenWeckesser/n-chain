@@ -1,0 +1,8 @@
+The latest versions of the nchain code are nchain_exps.m and nchain_ags.m.
+These versions use sqrt(omega) as the parameter component of the search space.
+nchain_exps.m animates the family in the MATLAB graph, and nchain_ags.m
+creates an animated GIF file.  I have been using nchain_exps to see how
+the family looks, and when it looks OK, I run nchain_ags with the same
+delta and m to create the animated GIF.
+
+Someday, this should all be put into one program!

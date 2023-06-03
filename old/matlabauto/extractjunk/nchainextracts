@@ -1,0 +1,79 @@
+#!/usr/bin/perl
+#
+# CHANGES IN THIS FILE ARE NOT COMPLETE!
+# IT WON'T WORK AS IS!
+#
+# This program extracts the data associated with a given branch
+# from an AUTO s.* file.
+#
+# This program creates two files.  One contains the data that makes
+# up the periodic orbit of the given label.  The other contains the
+# parameters epsilon, a, omega, and the period.
+# If the third argument is, say, "p100", then the names of these files
+# will be "p100.dat" and "p100.prm", respectively.
+#
+
+if ($#ARGV != 2)
+   {
+   print STDERR "This program requires three arguments: branch number, label, and root for the file names\n";
+   print STDERR "Example:\n   extracts 1 23 p23 < s.data\n";
+   print STDERR "This example will extract the data associated with the point labeled 23 of\n";
+   print STDERR "branch 1 from the file s.data.  The data will be put in the file p23.dat,\n";
+   print STDERR "and the parameters values epsilon, a, omega, and the period will\n";
+   print STDERR "be put in the file p23.prm.\n";
+   exit;
+   }
+
+# First argument is the branch number.
+$br = shift(@ARGV);
+
+# Second argument is the label.
+$lb = shift(@ARGV);
+
+# Third argument is the root for the file names.
+$fnroot = shift(@ARGV);
+
+$fndata = $fnroot . ".dat";
+#$fnparm = $fnroot . ".prm";
+
+open(DATAFILE,">" . $fndata) ||
+   die "Unable to open $fndata";
+
+while (<STDIN>)
+   {
+   @fields = split(' ');
+   $ibr     = $fields[0];   # Branch
+   $ilb     = $fields[3];   # Label
+   $inphi   = $fields[7];   # Number of data values
+   $inlines = $fields[8];   # Number of following lines before next solution
+   $inpar   = $fields[11];  # Number of parameter values
+
+   print STDERR $ibr, " ", $ilb, "\n";
+   if ($ibr eq $br)
+      {
+      $dat = <STDIN>;
+      @datfields = split(' ',$dat);
+      $par = <STDIN>; 
+      print DATAFILE;
+      close(DATAFILE);
+      while ($n2 > 0)
+         {
+         $_ = <>;
+         --$n2;
+         }
+         $_ = <>;
+         @fields = split(' ');
+         $epsilon = $fields[0];
+         $a       = $fields[1];
+         $omega   = $fields[2];
+         $_ = <>;
+         @fields = split(' ');
+         $period = $fields[3];
+         open(PARMFILE,">" . $fnparm) ||
+            die "Unable to open $fnparm";
+         print PARMFILE $epsilon, " ", $a, " ", $omega, " ", $period, "\n";
+         close(PARMFILE);
+         exit;
+         }
+      }
+   }
